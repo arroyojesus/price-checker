@@ -8,22 +8,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
  @Entity
  @Table(name = "PRICE")
-public class Price implements Serializable{
+public class PriceEntity implements Serializable{
 	
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Id
 	 @Column(name="PRICE_LIST")
-	 private Long idPrice;
+	 private Long priceId;
 	 
 	 @Column(name="BRAND_ID")
-	 private Integer idBrand;
+	 @NotNull(message = "El brandId no puede ser nulo")
+	 private Integer brandId;
 
 	 @Column(name="PRODUCT_ID")
-	 private String idProducto;
+	 @NotNull(message = "El productId no puede ser nulo")
+	 private String productId;
 	 
 	 @Column(name="PRIORITY")
 	 private Integer priority;
@@ -35,7 +38,7 @@ public class Price implements Serializable{
 	 private Float price;
 
 	public Long getIdPrice() {
-		return idPrice;
+		return priceId;
 	}
 	@Column(name="START_DATE")
 	private LocalDateTime  startDay;
@@ -43,24 +46,31 @@ public class Price implements Serializable{
 	@Column(name="END_DATE")
 	private LocalDateTime endDay;
 
-	public void setIdPrice(Long idPrice) {
-		this.idPrice = idPrice;
+	@Transient
+	private String applicationDate;
+
+	public Long getPriceId() {
+		return priceId;
 	}
 
-	public Integer getIdBrand() {
-		return idBrand;
+	public void setPriceId(Long priceId) {
+		this.priceId = priceId;
 	}
 
-	public void setIdBrand(Integer idBrand) {
-		this.idBrand = idBrand;
+	public Integer getBrandId() {
+		return brandId;
 	}
 
-	public String getIdProducto() {
-		return idProducto;
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
 	}
 
-	public void setIdProducto(String idProducto) {
-		this.idProducto = idProducto;
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public Integer getPriority() {
@@ -103,21 +113,15 @@ public class Price implements Serializable{
 		this.endDay = endDay;
 	}
 
-	
-	public Price(Long idPrice, Integer idBrand, String idProducto, Integer priority, String curr, Float price,
-			LocalDateTime startDay, LocalDateTime endDay) {
-		super();
-		this.idPrice = idPrice;
-		this.idBrand = idBrand;
-		this.idProducto = idProducto;
-		this.priority = priority;
-		this.curr = curr;
-		this.price = price;
-		this.startDay = startDay;
-		this.endDay = endDay;
+	public String getApplicationDate() {
+		return applicationDate;
 	}
 
-	public Price() {
-	
+	public void setApplicationDate(String applicationDate) {
+		this.applicationDate = applicationDate;
+	}
+
+	public PriceEntity() {
+		super();
 	}
 }

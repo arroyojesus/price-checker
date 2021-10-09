@@ -1,8 +1,13 @@
+------------------------------
+--CREATE TABLES
+------------------------------
 CREATE TABLE PRICE (
-	price_list INT NOT NULL, 
-	curr VARCHAR(20),
-    brand_id INT,
-    product_id VARCHAR(20),
-    price FLOAT,
-    priority INT
+	PRICE_LIST INT NOT NULL, 
+	CURR VARCHAR(20),
+    BRAND_ID INT,
+    PRODUCT_ID VARCHAR(20),
+    PRICE FLOAT,
+    PRIORITY INT,
+    END_DATE TIMESTAMP,
+    START_DATE TIMESTAMP
 );

@@ -1,39 +1,25 @@
 
 package com.jarroyo.price.checker.component;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Component;
 
-import com.jarroyo.price.checker.entity.Price;
-import com.jarroyo.price.checker.model.PriceModel;
+import com.jarroyo.price.checker.entity.PriceEntity;
+import com.jarroyo.price.checker.model.Price;
 
 @Component("priceConverter")
 public class PriceConverter {
-	
-	public Price convertPriceModel2Price(PriceModel priceModel) {
+
+	public Price convertPrice2PriceModel(PriceEntity priceEntity, LocalDateTime applicationDate) {
 		
 		Price price = new Price();
-		price.setIdPrice(priceModel.getIdPrice());
-		price.setIdBrand(price.getIdBrand());
-		price.setIdProducto(priceModel.getIdProducto());
-		price.setPriority(priceModel.getPriority());
-		price.setCurr(priceModel.getCurr());
-		price.setPrice(priceModel.getPrice());
+		price.setProductId(priceEntity.getProductId());
+		price.setBrandId(priceEntity.getBrandId());
+		price.setPriceId(priceEntity.getPriceId());
+		price.setApplicationDate(applicationDate);
+		price.setPrice(priceEntity.getPrice());
+		price.setCurr(priceEntity.getCurr());
 		return price;
-		
 	}
-	
-	public PriceModel convertPrice2PriceModel(Price price) {
-		
-		PriceModel priceModel = new PriceModel();
-		priceModel.setIdPrice(price.getIdPrice());
-		priceModel.setIdBrand(price.getIdBrand());
-		priceModel.setIdProducto(price.getIdProducto());
-		priceModel.setPriority(price.getPriority());
-		priceModel.setCurr(price.getCurr());
-		priceModel.setPrice(price.getPrice());
-//		priceModel.setStartDay(price.getStartDay());
-//		priceModel.setEndDay(price.getEndDay());
-		return priceModel;
-	}
-
 }
