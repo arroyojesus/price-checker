@@ -120,6 +120,7 @@ public class PriceEntity implements Serializable{
 	public void setApplicationDate(String applicationDate) {
 		this.applicationDate = applicationDate;
 	}
+	
 
 	public PriceEntity() {
 		super();
